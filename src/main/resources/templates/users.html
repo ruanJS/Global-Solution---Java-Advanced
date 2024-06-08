@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Usuários</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<h1>Lista de Usuários e Observações</h1>
+<div th:each="usuario : ${usuarios}">
+    <h2 th:text="${usuario.nome}"></h2>
+    <ul>
+        <li th:each="observacao : ${usuario.observacoes}" th:text="${observacao.texto}"></li>
+    </ul>
+    <form th:action="@{/users/{id}/observations(id=${usuario.id})}" method="post">
+        <input type="text" name="texto" placeholder="Adicionar observação" required/>
+        <button type="submit">Adicionar</button>
+    </form>
+</div>
+<script src="../static/js/script.js"></script>
+</body>
+</html>
